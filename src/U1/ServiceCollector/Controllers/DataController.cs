@@ -2,6 +2,7 @@
 using ServiceCollector.Functions;
 using ServiceCollector.Core;
 using Lib.Suppliers.Types;
+using System.Text.Json;
 
 namespace ServiceCollector.Controllers
 {
@@ -50,7 +51,8 @@ namespace ServiceCollector.Controllers
                 return Unauthorized(oErrorMessage);
             }
 
-            return await new CoreLogicUnitA(new SupplierHelper()).Main(aPID);
+            ActionResult<string> result = await new CoreLogicUnitA(new SupplierHelper()).Main(aPID);
+            return JsonSerializer.Serialize(result);
         }
 
         /// <summary>
