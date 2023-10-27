@@ -20,7 +20,7 @@ namespace Lib.Suppliers.Tests
         {
             SupplierCommon result = ConvertFunctions.FromSupplier<SouthRentalsIncommingEntry>(SouthRentailsEntries.item1);
 
-            Assert.AreEqual(result.SupplierID, Types.Suppliers.spSouthRentals);
+            Assert.AreEqual(result.SupplierID, (int)Types.Suppliers.spSouthRentals);
             Assert.AreEqual(result.SupplierOfferID, CommonData.CONST_SupplierID_V1);
             Assert.AreEqual(result.RentCost, CommonData.CONST_RentCost_V1);
             Assert.AreEqual(result.RentCurrency, CommonData.CONST_RentCurrency_V1);
@@ -35,7 +35,7 @@ namespace Lib.Suppliers.Tests
         {
             SupplierCommon result = ConvertFunctions.FromSupplier<SouthRentalsIncommingEntry>(SouthRentailsEntries.item2);
 
-            Assert.AreEqual(result.SupplierID, Types.Suppliers.spSouthRentals);
+            Assert.AreEqual(result.SupplierID, (int)Types.Suppliers.spSouthRentals);
             Assert.AreEqual(result.SupplierOfferID, CommonData.CONST_SupplierID_V2);
             Assert.AreEqual(result.RentCost, CommonData.CONST_RentCost_V2);
             Assert.AreEqual(result.RentCurrency, CommonData.CONST_RentCurrency_V2);
@@ -50,7 +50,7 @@ namespace Lib.Suppliers.Tests
         {
             SupplierCommon result = ConvertFunctions.FromSupplier<SouthRentalsIncommingEntry>(new SouthRentalsIncommingEntry());
 
-            Assert.AreEqual(result.SupplierID, Types.Suppliers.spSouthRentals);
+            Assert.AreEqual(result.SupplierID, (int)Types.Suppliers.spSouthRentals);
             Assert.AreEqual(result.SupplierOfferID, string.Empty);
             Assert.AreEqual(result.RentCost, 0);
             Assert.AreEqual(result.RentCurrency, string.Empty);
