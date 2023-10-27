@@ -52,6 +52,17 @@ namespace ServiceCollector.Controllers
             return await new CoreLogicUnitA().Main(aPID);
         }
 
+        /// <summary>
+        ///     I don't know other way to pass def value :/
+        /// </summary>
+        /// <param name="aMin"></param>
+        /// <param name="aMax"></param>
+        /// <returns></returns>
+        [HttpGet("{aMin:float=0}/{aMax:float=0}")]
+        public async Task<ActionResult<string>> Get(float aMin = 0, float aMax = 0)
+        {
+            return await Get(aMin, aMax, string.Empty);
+        }
 
         /// <summary>
         ///     Aggregate the results from all suppliers into a single list of available car offers
@@ -62,8 +73,8 @@ namespace ServiceCollector.Controllers
         /// <param name="aMin"></param>
         /// <param name="aMax"></param>
         /// <returns></returns>
-        [HttpGet("{aCarType?}/{aMin:float=0}/{aMax:float=0}")]
-        public async Task<ActionResult<string>> Get(string aCarType, float aMin = 0, float aMax = 0)
+        [HttpGet("{aMin:float=0}/{aMax:float=0}/{aCarType?}")]
+        public async Task<ActionResult<string>> Get(float aMin = 0, float aMax = 0, string aCarType = "")
         {
             // Check if the request is secure
             if (!CoreHelper.SecCheck(Request, out string oErrorMessage))

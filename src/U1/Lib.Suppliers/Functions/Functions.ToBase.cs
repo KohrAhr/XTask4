@@ -36,7 +36,7 @@ namespace Lib.Suppliers.Functions
             }
 
             // Get Id by Type. Otehrwise 0 is Def
-            Supplier? supplier = SupplierHelper.SuppliersInfo.FirstOrDefault(x => x.ObjectType == typeof(T));
+            Supplier? supplier = new SupplierHelper().SuppliersInfo.FirstOrDefault(x => x.ObjectType == typeof(T));
             if (supplier != null)
             {
                 result.SupplierID = (int)supplier.Id;

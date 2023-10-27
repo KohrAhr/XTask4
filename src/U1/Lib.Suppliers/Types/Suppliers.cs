@@ -18,11 +18,11 @@ namespace Lib.Suppliers.Types
         public string Url { get; set; } = string.Empty;
     }
 
-    public static class SupplierHelper
+    public class SupplierHelper : ISupplierHelper
     {
-        private static List<Supplier> suppliersInfo { get; set; }
+        private List<Supplier> suppliersInfo { get; set; }
 
-        public static List<Supplier> SuppliersInfo
+        public List<Supplier> SuppliersInfo
         { 
             get
             {
@@ -34,10 +34,13 @@ namespace Lib.Suppliers.Types
             }
         }
 
-        public static IConfigurationBuilder configBuilder;
-        public static IConfigurationRoot config;
+        public IConfigurationBuilder configBuilder;
+        public IConfigurationRoot config;
 
-        static SupplierHelper() 
+        /// <summary>
+        ///     Constructor
+        /// </summary>
+        public SupplierHelper() 
         {
             // Read Config file?
             configBuilder = new ConfigurationBuilder().AddJsonFile("appsettings.json", true, true);
@@ -47,7 +50,7 @@ namespace Lib.Suppliers.Types
             suppliersInfo = GenerateSupplierInfoArray();
         }
 
-        private static List<Supplier> GenerateSupplierInfoArray()
+        private List<Supplier> GenerateSupplierInfoArray()
         {
             List<Supplier> suppliersInfo = new()
             {

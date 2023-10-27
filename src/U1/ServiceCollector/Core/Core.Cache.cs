@@ -39,10 +39,11 @@ namespace ServiceCollector.Core
             {
                 x = await CoreDbHelper.RunExecStatement(sqlQuery);
 
-                if (x != null)
-                {
-                    dataResult = (T)x;
-                }
+                // No, cannot be null here. V3022
+                //if (x != null)
+                //{
+                dataResult = (T)x;
+//                }
             }
             else
             // Type Int -- Scalar query
@@ -50,10 +51,11 @@ namespace ServiceCollector.Core
             {
                 x = await CoreDbHelper.RunScalarExecStatement(sqlQuery);
 
-                if (x != null)
-                {
-                    dataResult = (T)x;
-                }
+                // No, cannot be null here. V3022
+                //if (x != null)
+                //{
+                dataResult = (T)x;
+//                }
             }
             else
             {
@@ -61,8 +63,9 @@ namespace ServiceCollector.Core
                 throw new NotImplementedException();
             }
 
-            if (dataResult != null)
-            {
+            // No, cannot be null here. V3022
+            //if (dataResult != null)
+            //{
                 // Store the data in the cache with an expiration time
                 CacheItemPolicy policy = new CacheItemPolicy
                 {
@@ -70,7 +73,7 @@ namespace ServiceCollector.Core
                     AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(AppData.MinutesDbTTL)
                 };
                 _cache.Add(newObjectName, dataResult, policy);
-            }
+//            }
 
             return dataResult;
         }

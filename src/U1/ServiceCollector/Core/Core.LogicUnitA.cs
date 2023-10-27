@@ -10,6 +10,8 @@ namespace ServiceCollector.Core
 {
     public class CoreLogicUnitA
     {
+        private readonly ISupplierHelper supplierHelper;
+
         private const string CONST_FAIL = "Error";
 
         public async Task<ActionResult<string>> Main(int aPID)
@@ -17,6 +19,11 @@ namespace ServiceCollector.Core
             IEnumerable<SupplierCommon>? data = await ResolveLatestData(aPID);
 
             return DeleteInsert(data, aPID);
+        }
+
+        CoreLogicUnitA(ISupplierHelper aSupplierHelper)
+        {
+            supplierHelper = aSupplierHelper;
         }
 
         /// <summary>
@@ -30,7 +37,7 @@ namespace ServiceCollector.Core
         public async Task<IEnumerable<SupplierCommon>?> ResolveLatestData(int aPID)
         {
             // Id is Type
-            Supplier? supplier = SupplierHelper.SuppliersInfo.FirstOrDefault(x => (int)x.Id == aPID);
+            Supplier? supplier = supplierHelper.SuppliersInfo.FirstOrDefault(x => (int)x.Id == aPID);
             if (supplier == null || supplier.ObjectType == null || String.IsNullOrEmpty(supplier.Url))
             {
                 return null;

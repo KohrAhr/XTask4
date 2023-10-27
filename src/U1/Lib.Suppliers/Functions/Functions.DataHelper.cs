@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using Lib.Suppliers.Types;
 
 namespace Lib.Suppliers.Functions
@@ -25,9 +26,14 @@ namespace Lib.Suppliers.Functions
             result.Columns.Add("CarLogoImage", typeof(string));
             result.Columns.Add("CarImage", typeof(string));
 
-            // Way 2. We know class SupplierCommon. Use it. Create new attribute
+            // Way 2. We know class SupplierCommon. Use it. Create new attribute if needed
+            // TODO: !
 
-
+            //foreach (PropertyInfo sourceProperty in typeof(SupplierCommon).GetProperties())
+            //{
+            //    Type columnType = sourceProperty.PropertyType;
+            //    result.Columns.Add(sourceProperty.Name, columnType);
+            //}
 
             //
 

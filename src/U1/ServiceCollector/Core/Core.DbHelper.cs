@@ -7,9 +7,9 @@ namespace ServiceCollector.Core
 {
     public static class CoreDbHelper
     {
-        public static async Task<DataTable?> RunExecStatement(string aQuery)
+        public static async Task<DataTable> RunExecStatement(string aQuery)
         {
-            DataTable? result = null;
+            DataTable result = null;
 
             using (IDbConnection dbConnection = new SqlConnection(AppData.ConnString))
             {

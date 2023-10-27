@@ -105,11 +105,7 @@ namespace ServiceCollector.Functions
 
             if (!String.IsNullOrEmpty(value))
             {
-                if (!String.IsNullOrEmpty(result))
-                {
-                    result += " and ";
-                }
-                result += $" ([CarDesc] like '%{value}%') ";
+                result = $" ([CarDesc] like '%{value}%') ";
             }
 
             // #2

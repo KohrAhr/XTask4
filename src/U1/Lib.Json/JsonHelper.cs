@@ -55,7 +55,19 @@ namespace Lib.Json
             }
 
             MethodInfo specificMethod = genericMethod.MakeGenericMethod(aEntryType);
-            return specificMethod.Invoke(null, new object[] { aValue });
+            dynamic? result = null;
+
+            try
+            {
+                result = specificMethod.Invoke(null, new object[] { aValue });
+            }
+            catch (Exception ex) 
+            {
+                System.Diagnostics.Trace.Write(ex.ToString());
+                return null;
+            }
+
+            return result;
         }
 
         /// <summary>

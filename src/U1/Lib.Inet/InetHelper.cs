@@ -1,4 +1,6 @@
-﻿namespace Lib.Inet
+﻿using System.Text;
+
+namespace Lib.Inet
 {
     public static class InetHelper
     {
@@ -40,5 +42,41 @@
 
             return result;
         }
+
+        /// <summary>
+        ///     
+        /// </summary>
+        /// <param name="aUrl"></param>
+        /// <param name="jsonData"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static async Task<string> PostData(string aUrl, string jsonData = "")
+        {
+            string result = string.Empty;
+
+            try
+            {
+                using (HttpClient httpClient = new())
+                {
+                    StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                    using (HttpResponseMessage response = await httpClient.PostAsync(aUrl, content))
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            result = await response.Content.ReadAsStringAsync();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.Write(ex.ToString());
+                throw new Exception(ex.Message, ex);
+            }
+
+            return result;
+        }
+
     }
 }
