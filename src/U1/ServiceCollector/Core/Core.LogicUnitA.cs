@@ -21,7 +21,7 @@ namespace ServiceCollector.Core
             return DeleteInsert(data, aPID);
         }
 
-        CoreLogicUnitA(ISupplierHelper aSupplierHelper)
+        public CoreLogicUnitA(ISupplierHelper aSupplierHelper)
         {
             supplierHelper = aSupplierHelper;
         }

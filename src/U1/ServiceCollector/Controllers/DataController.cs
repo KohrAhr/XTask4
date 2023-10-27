@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ServiceCollector.Functions;
 using ServiceCollector.Core;
+using Lib.Suppliers.Types;
 
 namespace ServiceCollector.Controllers
 {
@@ -49,7 +50,7 @@ namespace ServiceCollector.Controllers
                 return Unauthorized(oErrorMessage);
             }
 
-            return await new CoreLogicUnitA().Main(aPID);
+            return await new CoreLogicUnitA(new SupplierHelper()).Main(aPID);
         }
 
         /// <summary>
