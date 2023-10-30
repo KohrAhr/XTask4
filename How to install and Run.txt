@@ -1,9 +1,14 @@
-DB
-==========
+======================
+MS SQL DB Version 2012
+======================
 
 1) Apply all SQL scripts from folder \sql\ one by one
 
 1.1) Make changes in file "\sql\20231025 0001 Create db.sql" and change folder with physical file location for database. All other SQL scripts are re-executable.
+
+======================
+App (Services) .NET 6
+======================
 
 2) Build "\src\U2\DataLoader\DataLoader.sln"
 
