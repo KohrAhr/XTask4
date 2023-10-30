@@ -11,13 +11,12 @@ App (Services) .NET 6
 ======================
 
 2) Build "\src\U2\DataLoader\DataLoader.sln"
-
-2.1) Make changes in file "appsettings.json" and change database connection string. Change other parameters if needed.
+2.1) Make changes in file "appsettings.json" and modify 
+2.1.1) Database connection string "DbConnString"
+2.1.2) Update server URL for entry "PostRequestToResetCache". It should be pointed to DataProvider API url.
 
 3) Build "\src\U2\DataLoader\DataProvider.sln"
-
 3.1) Make changes in file "appsettings.json" and change database connection string. Change other parameters if needed.
 
 4) Run "DataLoader.exe" and "DataProvider.exe"
-
 4.1) Make tests by using Swagger / Postmat / Test Application
