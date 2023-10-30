@@ -1,44 +1,47 @@
-USE [ExplorerBeyond]
+-- ----------------------------
+-- Table structure for Offers
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[Offers]') AND type IN ('U'))
+	DROP TABLE [dbo].[Offers]
 GO
 
-/****** Object:  Table [dbo].[Offers]    Script Date: 10/26/2023 10:24:53 PM ******/
-SET ANSI_NULLS ON
+CREATE TABLE [dbo].[Offers] (
+  [UEID] bigint  IDENTITY(1,1) NOT NULL,
+  [SupplierID] int DEFAULT 0 NOT NULL,
+  [SupplierOfferID] varchar(25) COLLATE Cyrillic_General_CI_AS  NOT NULL,
+  [RentCost] money  NOT NULL,
+  [RentCurrency] varchar(5) COLLATE Cyrillic_General_CI_AS  NOT NULL,
+  [CarDesc] varchar(100) COLLATE Cyrillic_General_CI_AS  NOT NULL,
+  [CarID] varchar(25) COLLATE Cyrillic_General_CI_AS  NOT NULL,
+  [CarLogoImage] nvarchar(250) COLLATE Cyrillic_General_CI_AS  NULL,
+  [CarImage] nvarchar(250) COLLATE Cyrillic_General_CI_AS  NULL,
+  [EntryDateTime] datetime DEFAULT getdate() NOT NULL
+)
 GO
 
-SET QUOTED_IDENTIFIER ON
+ALTER TABLE [dbo].[Offers] SET (LOCK_ESCALATION = TABLE)
 GO
 
-SET ANSI_PADDING ON
+EXEC sp_addextendedproperty
+'MS_Description', N'; 0 -- Does not provided',
+'SCHEMA', N'dbo',
+'TABLE', N'Offers',
+'COLUMN', N'SupplierID'
 GO
 
-CREATE TABLE [dbo].[Offers](
-	[UEID] [bigint] IDENTITY(1,1) NOT NULL,
-	[SupplierID] [int] NOT NULL,
-	[SupplierOfferID] [varchar](25) NOT NULL,
-	[RentCost] [money] NOT NULL,
-	[RentCurrency] [varchar](5) NOT NULL,
-	[CarDesc] [varchar](100) NOT NULL,
-	[CarID] [varchar](25) NOT NULL,
-	[CarLogoImage] [nvarchar](250) NULL,
-	[CarImage] [nvarchar](250) NULL,
-	[EntryDateTime] [datetime] NOT NULL,
- CONSTRAINT [PK_Offers] PRIMARY KEY CLUSTERED 
-(
-	[UEID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
 
+-- ----------------------------
+-- Auto increment value for Offers
+-- ----------------------------
+DBCC CHECKIDENT ('[dbo].[Offers]', RESEED, 1620)
 GO
 
-SET ANSI_PADDING OFF
-GO
 
-ALTER TABLE [dbo].[Offers] ADD  CONSTRAINT [DF_Table_1_SuppliedID]  DEFAULT ((0)) FOR [SupplierID]
-GO
-
-ALTER TABLE [dbo].[Offers] ADD  CONSTRAINT [DF_Offers_EntryDateTime]  DEFAULT (getdate()) FOR [EntryDateTime]
-GO
-
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'; 0 -- Does not provided' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Offers', @level2type=N'COLUMN',@level2name=N'SupplierID'
+-- ----------------------------
+-- Primary Key structure for table Offers
+-- ----------------------------
+ALTER TABLE [dbo].[Offers] ADD CONSTRAINT [PK_Offers] PRIMARY KEY CLUSTERED ([UEID])
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
+ON [PRIMARY]
 GO
 
