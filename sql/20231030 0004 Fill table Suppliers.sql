@@ -1,3 +1,6 @@
+USE [ExplorerBeyond]
+GO
+
 DELETE FROM [dbo].[Suppliers];
 GO
 

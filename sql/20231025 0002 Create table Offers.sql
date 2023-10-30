@@ -1,3 +1,6 @@
+USE [ExplorerBeyond]
+GO
+
 -- ----------------------------
 -- Table structure for Offers
 -- ----------------------------
