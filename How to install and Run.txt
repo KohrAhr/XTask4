@@ -1,0 +1,18 @@
+DB
+==========
+
+1) Apply all SQL scripts from folder \sql\ one by one
+
+1.1) Make changes in file "\sql\20231025 0001 Create db.sql" and change folder with physical file location for database. All other SQL scripts are re-executable.
+
+2) Build "\src\U2\DataLoader\DataLoader.sln"
+
+2.1) Make changes in file "appsettings.json" and change database connection string. Change other parameters if needed.
+
+3) Build "\src\U2\DataLoader\DataProvider.sln"
+
+3.1) Make changes in file "appsettings.json" and change database connection string. Change other parameters if needed.
+
+4) Run "DataLoader.exe" and "DataProvider.exe"
+
+4.1) Make tests by using Swagger / Postmat / Test Application
