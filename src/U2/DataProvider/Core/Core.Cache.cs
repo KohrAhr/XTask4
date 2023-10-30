@@ -12,6 +12,18 @@ namespace DataProvider.Core
         /// </summary>
         private static MemoryCache _cache = new MemoryCache("AppDataTableContext");
 
+        public static void ResetCache() 
+        {
+            // Get all keys from the cache
+            IEnumerable<string> cacheKeys = _cache.Select(kvp => kvp.Key).ToList();
+
+            // Remove each item from the cache
+            foreach (string key in cacheKeys)
+            {
+                _cache.Remove(key);
+            }
+        }
+
         public static async Task<T> GetDataFromCacheOrDatabase<T>(string sqlQuery, string objectName = "") where T : new()
         {
             // Calc CRC32 for SqlQuery string? And use CRC as Name?

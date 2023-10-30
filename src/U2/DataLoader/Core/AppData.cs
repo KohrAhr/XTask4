@@ -24,5 +24,7 @@ namespace DataLoader
         /// 
         /// </summary>
         public static ObservableCollection<SupplierEntry>? supplierEntries = null;
+
+        public static string PostRequestToResetCache = string.Empty;
     }
 }

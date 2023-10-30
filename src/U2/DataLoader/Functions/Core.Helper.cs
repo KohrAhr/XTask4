@@ -32,6 +32,10 @@ namespace DataLoader.Functions
             }
 
             AppData.BatchInsertSize = lResult;
+
+            // #3
+            lValue = config["PostRequestToResetCache"];
+            AppData.PostRequestToResetCache = lValue;
         }
 
         ///

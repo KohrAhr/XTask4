@@ -15,7 +15,19 @@ namespace DataProvider.Controllers
         public ActionResult<string> Index()
         {
             // Otherwise, return a string with the current date and time
-            return $"Is up and running {DateTime.Now}";
+            return Ok($"Is up and running {DateTime.Now}");
+        }
+
+        /// <summary>
+        ///     Reset Cache
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost()]
+        public ActionResult<string> Post()
+        {
+            CoreCache.ResetCache();
+
+            return Ok("OK");
         }
 
         /// <summary>
