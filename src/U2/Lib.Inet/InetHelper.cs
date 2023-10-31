@@ -2,7 +2,7 @@
 
 namespace Lib.Inet
 {
-    public static class InetHelper
+    public class InetHelper : IInetHelper
     {
         /// <summary>
         ///     Get request
@@ -12,7 +12,7 @@ namespace Lib.Inet
         /// </param>
         /// <returns>Json or Empty string in case of error + throw exception</returns>
         /// <exception cref="Exception"></exception>
-        public static async Task<string> LoadRemoteData(string aUrl)
+        public async Task<string> LoadRemoteData(string aUrl)
         {
             string result = string.Empty;
 
@@ -65,7 +65,7 @@ namespace Lib.Inet
         /// <param name="jsonData"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public static async Task<string> PostData(string aUrl, string jsonData = "")
+        public async Task<string> PostData(string aUrl, string jsonData = "")
         {
             string result = string.Empty;
 

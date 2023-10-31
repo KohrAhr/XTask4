@@ -1,6 +1,7 @@
 using DataLoader;
 using DataLoader.Functions;
 using Lib.Db.ServerSide;
+using Lib.Inet;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,7 @@ app.MapControllers();
 CoreHelper.ProceedConfigFile();
 
 AppData.CoreDbHelper = new CoreDbHelper(AppData.ConnString);
+AppData.InetHelper = new InetHelper();
 
 // At first time, to speed up 
 await CoreHelper.LoadSuppliers();

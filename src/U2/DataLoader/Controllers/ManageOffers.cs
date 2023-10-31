@@ -2,7 +2,6 @@
 using System.Text.Json;
 using DataLoader.Core;
 using DataLoader.Functions;
-using Lib.Inet;
 
 namespace DataLoader.Controllers
 {
@@ -43,9 +42,14 @@ namespace DataLoader.Controllers
             ActionResult<string> result = await new CoreLogic().Main(aPID);
 
             // Call Reset cache
-            if (!String.IsNullOrEmpty(AppData.PostRequestToResetCache))
+            if (!String.IsNullOrEmpty(AppData.PostRequestToResetCache) && AppData.InetHelper != null)
             {
-                _ = await InetHelper.PostData(AppData.PostRequestToResetCache);
+                // No reason to wait
+                _ = Task.Run(() =>
+                {
+                    _ = AppData.InetHelper.PostData(AppData.PostRequestToResetCache);
+                });
+                
             }
 
             // Return result

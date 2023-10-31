@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Lib.Db.ServerSide;
+using Lib.Inet;
 using Lib.SupplierType.Types;
 
 namespace DataLoader
@@ -29,5 +30,7 @@ namespace DataLoader
         public static string PostRequestToResetCache = string.Empty;
 
         public static ICoreDbHelper? CoreDbHelper = null;
+
+        public static IInetHelper? InetHelper = null;
     }
 }

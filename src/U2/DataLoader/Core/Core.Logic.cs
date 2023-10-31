@@ -1,5 +1,4 @@
-﻿using Lib.Inet;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using System.Data;
 using Lib.SupplierType;
@@ -48,9 +47,14 @@ namespace DataLoader.Core
                 return null;
             }
 
+            if (AppData.InetHelper == null)
+            {
+                throw new ArgumentNullException(nameof(AppData.InetHelper));
+            }
+
             // Get Json from remote server
             // Make Async Get request to remote Url
-            string rawResult = await InetHelper.LoadRemoteData(supplierEntry.SupplierUrl);
+            string rawResult = await AppData.InetHelper.LoadRemoteData(supplierEntry.SupplierUrl);
             if (String.IsNullOrEmpty(rawResult))
             {
                 return null;
