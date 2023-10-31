@@ -11,8 +11,13 @@ namespace DataProvider.Core
     {
         private ICoreDbHelper CoreDbHelper { get; set; }
 
-        public CoreLogic(ICoreDbHelper aCoreDbHelper)
+        public CoreLogic(ICoreDbHelper? aCoreDbHelper)
         {
+            if (aCoreDbHelper == null)
+            {
+                throw new ArgumentNullException(nameof(aCoreDbHelper));
+            }
+
             CoreDbHelper = aCoreDbHelper;
         }
 

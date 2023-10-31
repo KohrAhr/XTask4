@@ -1,4 +1,6 @@
-﻿namespace DataProvider
+﻿using Lib.Db.ServerSide;
+
+namespace DataProvider
 {
     public static class AppData
     {
@@ -18,5 +20,7 @@
         ///     Using only for internal cache
         /// </summary>
         public static int MinutesDbTTL = 15;
+
+        public static ICoreDbHelper? CoreDbHelper = null;
     }
 }
