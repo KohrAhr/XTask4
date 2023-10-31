@@ -1,16 +1,22 @@
-﻿using Lib.Json;
-using Lib.SupplierType;
-using Microsoft.AspNetCore.Mvc;
-using DataProvider.Functions;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.ObjectModel;
 using System.Data;
+using Lib.Json;
 using Lib.Db.ServerSide;
+using DataProvider.Functions;
 
 namespace DataProvider.Core
 {
     public class CoreLogic
     {
-        public async Task<ActionResult<string>> Main(int aSupplierId, float aMin, float aMax, string aCarType)
+        private ICoreDbHelper CoreDbHelper { get; set; }
+
+        public CoreLogic(ICoreDbHelper aCoreDbHelper)
+        {
+            CoreDbHelper = aCoreDbHelper;
+        }
+
+        public async Task<ActionResult<string>> Main<T>(int aSupplierId, float aMin, float aMax, string aCarType) where T : new()
         {
             // Build SQL
             string runSql;
@@ -33,8 +39,7 @@ namespace DataProvider.Core
             DataTable dataTable = await CoreCache.GetDataFromCacheOrDatabase<DataTable>(runSql);
 
             // Data Table to Observable collection
-            CoreDbHelper coreDbHelper = new CoreDbHelper(AppData.ConnString);
-            ObservableCollection<SupplierCommon> data = coreDbHelper.ConvertDataTableToObservableCollection<SupplierCommon>(dataTable);
+            ObservableCollection<T> data = CoreDbHelper.ConvertDataTableToObservableCollection<T>(dataTable);
 
             // Observable collection to Json
             string result = JsonHelper.ObservableCollectionToJson(data);

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DataProvider.Core;
+using Lib.Db.ServerSide;
+using Lib.SupplierType;
 
 namespace DataProvider.Controllers
 {
@@ -53,7 +55,7 @@ namespace DataProvider.Controllers
         [HttpGet("{aSupplierId:int=0}/{aMin:float=0}/{aMax:float=0}/{aCarType?}")]
         public async Task<ActionResult<string>> Get(int aSupplierId = 0, float aMin = 0, float aMax = 0, string aCarType = "")
         {
-            return await new CoreLogic().Main(aSupplierId, aMin, aMax, aCarType);
+            return await new CoreLogic(new CoreDbHelper(AppData.ConnString)).Main<SupplierCommon>(aSupplierId, aMin, aMax, aCarType);
         }
     }
 }
