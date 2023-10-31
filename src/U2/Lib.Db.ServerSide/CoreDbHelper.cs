@@ -5,9 +5,21 @@ using System.Reflection;
 
 namespace Lib.Db.ServerSide
 {
-    public class CoreDbHelper
+    public class CoreDbHelper : ICoreDbHelper
     {
         private string _dbConnectionString;
+
+        public string ConnectionString
+        { 
+            get 
+            { 
+                return _dbConnectionString; 
+            } 
+            set
+            {
+                _dbConnectionString = value;
+            }
+        }
 
         public CoreDbHelper(string aDbConnectionString)
         {
@@ -16,7 +28,7 @@ namespace Lib.Db.ServerSide
 
         public async Task<DataTable> RunExecStatement(string aQuery)
         {
-            DataTable result = null;
+            DataTable result;
 
             using (IDbConnection dbConnection = new SqlConnection(_dbConnectionString))
             {
