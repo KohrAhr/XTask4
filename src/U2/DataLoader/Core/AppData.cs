@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Lib.Db.ServerSide;
 using Lib.SupplierType.Types;
 
 namespace DataLoader
@@ -26,5 +27,7 @@ namespace DataLoader
         public static ObservableCollection<SupplierEntry>? supplierEntries = null;
 
         public static string PostRequestToResetCache = string.Empty;
+
+        public static ICoreDbHelper? CoreDbHelper = null;
     }
 }

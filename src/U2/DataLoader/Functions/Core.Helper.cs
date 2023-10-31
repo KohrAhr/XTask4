@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using Lib.Db.ServerSide;
 using Lib.SupplierType.Types;
 
 namespace DataLoader.Functions
@@ -42,12 +41,16 @@ namespace DataLoader.Functions
 
         public static async Task LoadSuppliers()
         {
+            if (AppData.CoreDbHelper == null)
+            {
+                throw new ArgumentNullException(nameof(AppData.CoreDbHelper));
+            }
+
             string CONST_GET_SUPPLIERS = "select * from [Suppliers] where (IsActive = 1);";
 
-            CoreDbHelper coreDbHelper = new CoreDbHelper(AppData.ConnString);
-            DataTable dataTable = await coreDbHelper.RunExecStatement(CONST_GET_SUPPLIERS);
+            DataTable dataTable = await AppData.CoreDbHelper.RunExecStatement(CONST_GET_SUPPLIERS);
 
-            AppData.supplierEntries = coreDbHelper.ConvertDataTableToObservableCollection<SupplierEntry>(dataTable);
+            AppData.supplierEntries = AppData.CoreDbHelper.ConvertDataTableToObservableCollection<SupplierEntry>(dataTable);
 
             return;
         }
