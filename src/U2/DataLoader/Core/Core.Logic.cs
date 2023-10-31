@@ -65,6 +65,12 @@ namespace DataLoader.Core
 
             //
             List<Transformation> transformationList = JsonConvert.DeserializeObject<List<Transformation>>(supplierEntry.ClassTransferList);
+
+            if (transformationList == null)
+            {
+                return null;
+            }
+
             foreach (Transformation transformation in transformationList)
             {
                 transformations[transformation.OldName] = transformation.NewName;

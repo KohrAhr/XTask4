@@ -1,4 +1,5 @@
 ﻿using Lib.Db.ServerSide;
+using Lib.Json;
 
 namespace DataProvider
 {
@@ -22,5 +23,7 @@ namespace DataProvider
         public static int MinutesDbTTL = 15;
 
         public static ICoreDbHelper? CoreDbHelper = null;
+
+        public static IJsonHelper? JsonHelper = null;
     }
 }

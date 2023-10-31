@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLoader", "DataLoader.csproj", "{EB339774-C47C-4620-BB45-76775257E01A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLoader", "DataLoader.csproj", "{EB339774-C47C-4620-BB45-76775257E01A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.SupplierType", "..\Lib.SupplierType\Lib.SupplierType.csproj", "{C2ADE51F-D0B4-4F22-9642-D25BAC23EA3F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Inet", "..\Lib.Inet\Lib.Inet.csproj", "{84BEBB95-A143-47C7-A1BD-44EA2BA976EB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Json", "..\Lib.Json\Lib.Json.csproj", "{804AED5E-9B3D-4482-936C-64B8554B32EB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Db.ServerSide", "..\Lib.Db.ServerSide\Lib.Db.ServerSide.csproj", "{BFBEB727-50D1-450A-82F5-1D1D258A16DE}"
 EndProject
@@ -31,10 +29,6 @@ Global
 		{84BEBB95-A143-47C7-A1BD-44EA2BA976EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84BEBB95-A143-47C7-A1BD-44EA2BA976EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84BEBB95-A143-47C7-A1BD-44EA2BA976EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{804AED5E-9B3D-4482-936C-64B8554B32EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{804AED5E-9B3D-4482-936C-64B8554B32EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{804AED5E-9B3D-4482-936C-64B8554B32EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{804AED5E-9B3D-4482-936C-64B8554B32EB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BFBEB727-50D1-450A-82F5-1D1D258A16DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BFBEB727-50D1-450A-82F5-1D1D258A16DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFBEB727-50D1-450A-82F5-1D1D258A16DE}.Release|Any CPU.ActiveCfg = Release|Any CPU

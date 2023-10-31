@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Lib.Json
 {
-    public static class JsonHelper
+    public class JsonHelper : IJsonHelper
     {
         /// <summary>
         ///     String to Class
@@ -12,7 +12,7 @@ namespace Lib.Json
         /// <typeparam name="T">Type of class</typeparam>
         /// <param name="aValue">Source data in JSON</param>
         /// <returns>Instance of Class with data</returns>
-        public static T? JsonStringToClass<T>(string aValue)
+        public T? JsonStringToClass<T>(string aValue)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace Lib.Json
         // +2h by AZ
         // Improved after consultation
 
-        public static dynamic? JsonStringToClass(string aValue, Type aEntryType)
+        public dynamic? JsonStringToClass(string aValue, Type aEntryType)
         {
             if (string.IsNullOrEmpty(aValue))
             {
@@ -78,7 +78,7 @@ namespace Lib.Json
         /// <returns>
         ///     Null if nothing to convert or cannot be converted
         /// </returns>
-        public static dynamic? JsonToCommonCollection(string aData, Type aEntryType)
+        public dynamic? JsonToCommonCollection(string aData, Type aEntryType)
         {
             Type genericType = typeof(ObservableCollection<>).MakeGenericType(aEntryType);
             dynamic? itemsOriginal = JsonStringToClass(aData, genericType);
@@ -86,7 +86,7 @@ namespace Lib.Json
             return itemsOriginal;
         }
 
-        public static string ObservableCollectionToJson<T>(ObservableCollection<T> collection)
+        public string ObservableCollectionToJson<T>(ObservableCollection<T> collection)
         {
             string result = JsonConvert.SerializeObject(collection);
 

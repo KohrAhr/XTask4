@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.ObjectModel;
 using System.Data;
-using Lib.Json;
 using Lib.Db.ServerSide;
 using DataProvider.Functions;
 
@@ -34,6 +33,11 @@ namespace DataProvider.Core
                 "order by" +
                 "   [RentCost], 1;";
 
+            if (AppData.JsonHelper == null)
+            {
+                throw new ArgumentNullException(nameof(AppData.JsonHelper));
+            }
+
             // Build where condition
             string where = CoreHelper.BuildWhereCondition(aSupplierId, aCarType.Trim(), aMin, aMax);
 
@@ -47,7 +51,7 @@ namespace DataProvider.Core
             ObservableCollection<T> data = CoreDbHelper.ConvertDataTableToObservableCollection<T>(dataTable);
 
             // Observable collection to Json
-            string result = JsonHelper.ObservableCollectionToJson(data);
+            string result = AppData.JsonHelper.ObservableCollectionToJson(data);
 
             // return result as Common Json
             return result;

@@ -1,6 +1,7 @@
 using DataProvider;
 using DataProvider.Functions;
 using Lib.Db.ServerSide;
+using Lib.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,8 @@ app.MapControllers();
 CoreHelper.ProceedConfigFile();
 
 AppData.CoreDbHelper = new CoreDbHelper(AppData.ConnString);
+
+AppData.JsonHelper = new JsonHelper();
 
 //
 
