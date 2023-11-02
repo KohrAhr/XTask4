@@ -18,9 +18,9 @@ namespace DataProvider.Controllers
         public ActionResult<string> Index()
         {
             // Otherwise, return a string with the current date and time
-            return Ok(JsonConvert.DeserializeObject($"Is up and running {DateTime.Now}"));
+            return Ok($"Is up and running {DateTime.Now}");
         }
-
+        
         /// <summary>
         ///     Reset Cache
         /// </summary>
@@ -30,7 +30,7 @@ namespace DataProvider.Controllers
         {
             CoreCache.ResetCache();
 
-            return Ok(JsonConvert.DeserializeObject("OK"));
+            return Ok("OK");
         }
 
         /// <summary>
