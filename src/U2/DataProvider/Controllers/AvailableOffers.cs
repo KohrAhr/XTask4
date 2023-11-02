@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DataProvider.Core;
 using Lib.SupplierType;
+using Lib.Json;
+using Newtonsoft.Json;
 
 namespace DataProvider.Controllers
 {
@@ -16,7 +18,7 @@ namespace DataProvider.Controllers
         public ActionResult<string> Index()
         {
             // Otherwise, return a string with the current date and time
-            return Ok($"Is up and running {DateTime.Now}");
+            return Ok(JsonConvert.DeserializeObject($"Is up and running {DateTime.Now}"));
         }
 
         /// <summary>
@@ -28,7 +30,7 @@ namespace DataProvider.Controllers
         {
             CoreCache.ResetCache();
 
-            return Ok("OK");
+            return Ok(JsonConvert.DeserializeObject("OK"));
         }
 
         /// <summary>
