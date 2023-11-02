@@ -26,25 +26,36 @@ namespace Lib.Db.ServerSide
             _dbConnectionString = aDbConnectionString;
         }
 
-        public async Task<DataTable> RunExecStatement(string aQuery)
+        public async Task<DataTable?> RunExecStatement(string aQuery)
         {
-            DataTable result;
+            DataTable? result = null;
 
-            using (IDbConnection dbConnection = new SqlConnection(_dbConnectionString))
+            try
             {
-                dbConnection.Open();
-
-                using (SqlCommand sqlCommand = new SqlCommand(aQuery, (SqlConnection)dbConnection))
+                using (IDbConnection dbConnection = new SqlConnection(_dbConnectionString))
                 {
-                    result = new DataTable();
-                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand))
+                    dbConnection.Open();
+
+                    using (SqlCommand sqlCommand = new SqlCommand(aQuery, (SqlConnection)dbConnection))
                     {
-                        await Task.Run(() =>
+                        result = new DataTable();
+                        using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand))
                         {
-                            sqlDataAdapter.Fill(result);
-                        });
+                            await Task.Run(() =>
+                            {
+                                sqlDataAdapter.Fill(result);
+                            });
+                        }
                     }
                 }
+            }
+            catch (SqlException ex)
+            {
+                System.Diagnostics.Trace.Write($"SQL Exception: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.Write($"Exception: {ex.Message}");
             }
 
             return result;
@@ -59,17 +70,28 @@ namespace Lib.Db.ServerSide
         {
             int result = -1;
 
-            using (IDbConnection dbConnection = new SqlConnection(_dbConnectionString))
+            try
             {
-                dbConnection.Open();
-                using (SqlCommand sqlCommand = new SqlCommand(aSql, (SqlConnection)dbConnection))
+                using (IDbConnection dbConnection = new SqlConnection(_dbConnectionString))
                 {
-                    object? scalarResult = await sqlCommand.ExecuteScalarAsync();
-                    if (scalarResult != null)
+                    dbConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(aSql, (SqlConnection)dbConnection))
                     {
-                        result = (int)scalarResult;
+                        object? scalarResult = await sqlCommand.ExecuteScalarAsync();
+                        if (scalarResult != null)
+                        {
+                            result = (int)scalarResult;
+                        }
                     }
                 }
+            }
+            catch (SqlException ex)
+            {
+                System.Diagnostics.Trace.Write($"SQL Exception: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.Write($"Exception: {ex.Message}");
             }
 
             return result;
@@ -101,26 +123,7 @@ namespace Lib.Db.ServerSide
                         {
                             object value = row[propertyName];
 
-                            if (property.PropertyType.IsGenericType && property.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
-                            {
-                                // Property is nullable
-                                if (value == DBNull.Value)
-                                {
-                                    property.SetValue(item, null);
-                                }
-                                else
-                                {
-                                    property.SetValue(item, Convert.ChangeType(value, Nullable.GetUnderlyingType(property.PropertyType)));
-                                }
-                            }
-                            else
-                            {
-                                // Property is non-nullable
-                                if (value != DBNull.Value)
-                                {
-                                    property.SetValue(item, Convert.ChangeType(value, property.PropertyType));
-                                }
-                            }
+                            SetPropertyValue(property, item, value);
                         }
                     }
                     collection.Add(item);
@@ -130,5 +133,39 @@ namespace Lib.Db.ServerSide
             return collection;
         }
 
+        private void SetPropertyValue(PropertyInfo property, object item, object value)
+        {
+            try
+            {
+                if (property.PropertyType.IsGenericType && property.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
+                {
+                    // Property is nullable
+                    if (value == DBNull.Value)
+                    {
+                        property.SetValue(item, null);
+                    }
+                    else
+                    {
+                        property.SetValue(item, Convert.ChangeType(value, Nullable.GetUnderlyingType(property.PropertyType)));
+                    }
+                }
+                else
+                {
+                    // Property is non-nullable
+                    if (value != DBNull.Value)
+                    {
+                        property.SetValue(item, Convert.ChangeType(value, property.PropertyType));
+                    }
+                }
+            }
+            catch (InvalidCastException ex)
+            {
+                System.Diagnostics.Trace.Write($"Invalid Cast Exception: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.Write($"Exception: {ex.Message}");
+            }
+        }
     }
 }

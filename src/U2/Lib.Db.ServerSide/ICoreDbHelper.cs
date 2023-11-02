@@ -7,7 +7,7 @@ namespace Lib.Db.ServerSide
     {
         string ConnectionString { get; set; }
 
-        Task<DataTable> RunExecStatement(string aQuery);
+        Task<DataTable?> RunExecStatement(string aQuery);
 
         Task<int> RunScalarExecStatement(string aSql);
 
