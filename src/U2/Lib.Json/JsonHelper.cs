@@ -64,7 +64,7 @@ namespace Lib.Json
             catch (Exception ex) 
             {
                 System.Diagnostics.Trace.Write(ex.ToString());
-                return null;
+                result = null;
             }
 
             return result;
@@ -80,9 +80,16 @@ namespace Lib.Json
         /// </returns>
         public dynamic? JsonToCommonCollection(string aData, Type aEntryType)
         {
-            Type genericType = typeof(ObservableCollection<>).MakeGenericType(aEntryType);
-            dynamic? itemsOriginal = JsonStringToClass(aData, genericType);
-
+            dynamic? itemsOriginal = null;
+            try
+            {
+                Type genericType = typeof(ObservableCollection<>).MakeGenericType(aEntryType);
+                itemsOriginal = JsonStringToClass(aData, genericType);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.Write(ex.ToString());
+            }
             return itemsOriginal;
         }
 
