@@ -1,4 +1,6 @@
-﻿CREATE DATABASE [ExplorerBeyond]
+-- MS SQL 2012
+
+CREATE DATABASE [ExplorerBeyond]
  CONTAINMENT = NONE
  ON  PRIMARY 
 ( NAME = N'ExplorerBeyond', FILENAME = N'......\ExplorerBeyond\db\ExplorerBeyond.mdf' , SIZE = 5120KB , FILEGROWTH = 1024KB )
