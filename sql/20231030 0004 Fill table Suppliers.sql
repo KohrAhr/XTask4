@@ -10,7 +10,7 @@ GO
 SET IDENTITY_INSERT [dbo].[Suppliers] ON
 GO
 
-INSERT INTO [dbo].[Suppliers] ([SupplierID], [SupplierName], [SupplierUrl], [IsActive], [IsAutoRefreshActive], [AutoRefreshInMinutes], [ClassTransferList]) VALUES (N'1', N'Best Rentals', N'https://1click.lv/GitHub/XTask4/data/AvailableOffers.json', N'1', N'0', N'60', N'[
+INSERT INTO [dbo].[Suppliers] ([SupplierID], [SupplierName], [SupplierUrl], [IsActive], [IsAutoRefreshActive], [AutoRefreshInMinutes], [ClassTransferList]) VALUES (N'1', N'Best Rentals', N'https://1click.lv/GitHub/XTask4/data/1.json', N'1', N'0', N'60', N'[
 	{"OldName":"uniqueId","NewName":"SupplierOfferID"},
 	{"OldName":"rentalCost","NewName":"RentCost"},
 	{"OldName":"rentalCostCurrency","NewName":"RentCurrency"},
@@ -22,7 +22,7 @@ INSERT INTO [dbo].[Suppliers] ([SupplierID], [SupplierName], [SupplierUrl], [IsA
 ')
 GO
 
-INSERT INTO [dbo].[Suppliers] ([SupplierID], [SupplierName], [SupplierUrl], [IsActive], [IsAutoRefreshActive], [AutoRefreshInMinutes], [ClassTransferList]) VALUES (N'2', N'Northern Rentals', N'https://1click.lv/GitHub/XTask4/data/GetRates.json', N'1', N'0', N'60', N'[
+INSERT INTO [dbo].[Suppliers] ([SupplierID], [SupplierName], [SupplierUrl], [IsActive], [IsAutoRefreshActive], [AutoRefreshInMinutes], [ClassTransferList]) VALUES (N'2', N'Northern Rentals', N'https://1click.lv/GitHub/XTask4/data/2.json', N'1', N'0', N'60', N'[
 	{"OldName":"id","NewName":"SupplierOfferID"},
 	{"OldName":"price","NewName":"RentCost"},
 	{"OldName":"currency","NewName":"RentCurrency"},
@@ -33,7 +33,7 @@ INSERT INTO [dbo].[Suppliers] ([SupplierID], [SupplierName], [SupplierUrl], [IsA
 ]')
 GO
 
-INSERT INTO [dbo].[Suppliers] ([SupplierID], [SupplierName], [SupplierUrl], [IsActive], [IsAutoRefreshActive], [AutoRefreshInMinutes], [ClassTransferList]) VALUES (N'3', N'South Rentals', N'https://1click.lv/GitHub/XTask4/data/Quotes.json', N'1', N'0', N'60', N'[
+INSERT INTO [dbo].[Suppliers] ([SupplierID], [SupplierName], [SupplierUrl], [IsActive], [IsAutoRefreshActive], [AutoRefreshInMinutes], [ClassTransferList]) VALUES (N'3', N'South Rentals', N'https://1click.lv/GitHub/XTask4/data/3.json', N'1', N'0', N'60', N'[
 	{"OldName":"quoteNumber","NewName":"SupplierOfferID"},
 	{"OldName":"price","NewName":"RentCost"},
 	{"OldName":"currency","NewName":"RentCurrency"},
