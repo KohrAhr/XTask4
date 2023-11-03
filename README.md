@@ -1,3 +1,3 @@
 # XTask4
 
-Test tesk for some IT company.
+Test task for some IT company.
